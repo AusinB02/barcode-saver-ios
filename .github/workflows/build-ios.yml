@@ -1,0 +1,35 @@
+name: Build iOS (Free 7-day signing)
+
+on:
+  push:
+    branches: [ main ]
+  workflow_dispatch:   # Lets you run manually
+
+jobs:
+  build:
+    runs-on: macos-latest
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+
+      - name: Install Godot 4.5
+        uses: godotengine/setup-godot@v2
+        with:
+          godot-version: 4.5
+
+      - name: Download iOS export templates
+        run: |
+          wget -q https://downloads.tuxfamily.org/godotengine/4.5/Godot_v4.5-stable_export_templates.tpz
+          mkdir -p ~/.local/share/godot/export_templates
+          unzip -q Godot_v4.5-stable_export_templates.tpz -d ~/.local/share/godot/export_templates
+          mv ~/.local/share/godot/export_templates/templates ~/.local/share/godot/export_templates/4.5.stable
+
+      - name: Export unsigned .ipa
+        run: |
+          godot --headless --export-release "iOS" BarcodeSaver.ipa
+
+      - name: Upload .ipa
+        uses: actions/upload-artifact@v4
+        with:
+          name: BarcodeSaver-unsigned
+          path: BarcodeSaver.ipa
