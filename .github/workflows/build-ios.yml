@@ -7,29 +7,25 @@ on:
 
 jobs:
   build:
-    runs-on: macos-latest
+    runs-on: macos-latest  # Free M1 Mac runner
     steps:
       - name: Checkout
         uses: actions/checkout@v4
 
-      - name: Install Godot 4.5
-        uses: godotengine/setup-godot@v2
+      - name: Setup Godot 4.5  # FIXED: Correct action name/repo
+        uses: lihop/setup-godot@v2
         with:
-          godot-version: 4.5
-
-      - name: Download iOS export templates
-        run: |
-          wget -q https://downloads.tuxfamily.org/godotengine/4.5/Godot_v4.5-stable_export_templates.tpz
-          mkdir -p ~/.local/share/godot/export_templates
-          unzip -q Godot_v4.5-stable_export_templates.tpz -d ~/.local/share/godot/export_templates
-          mv ~/.local/share/godot/export_templates/templates ~/.local/share/godot/export_templates/4.5.stable
+          version: 4.5-stable  # Exact Godot 4.5 stable
+          export-templates: true  # Auto-downloads iOS templates (no manual upload needed!)
 
       - name: Export unsigned .ipa
         run: |
-          godot --headless --export-release "iOS" BarcodeSaver.ipa
+          # Run headless export (adjust "iOS" to your preset name in Godot Export menu)
+          godot --headless --export-release "iOS" build/BarcodeSaver.ipa
+          # If your preset is named differently (e.g., "iOS Debug"), change "iOS" above
 
-      - name: Upload .ipa
+      - name: Upload .ipa artifact
         uses: actions/upload-artifact@v4
         with:
           name: BarcodeSaver-unsigned
-          path: BarcodeSaver.ipa
+          path: build/BarcodeSaver.ipa  # Adjust path if needed
