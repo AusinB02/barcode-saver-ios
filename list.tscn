@@ -1,0 +1,23 @@
+[gd_scene load_steps=2 format=3 uid="uid://blt8075hccs1x"]
+
+[ext_resource type="Script" uid="uid://bkofphlolu0ik" path="res://src/Scripts/List.gd" id="1_vafcc"]
+
+[node name="List" type="Control"]
+layout_mode = 3
+anchors_preset = 0
+offset_right = 40.0
+offset_bottom = 40.0
+script = ExtResource("1_vafcc")
+
+[node name="ItemsContainer" type="VBoxContainer" parent="."]
+layout_mode = 0
+offset_right = 40.0
+offset_bottom = 40.0
+
+[node name="RefreshButton" type="Button" parent="."]
+layout_mode = 0
+offset_top = 4.0
+offset_right = 68.0
+offset_bottom = 35.0
+text = "Refresh
+"

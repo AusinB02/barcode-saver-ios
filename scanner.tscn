@@ -1,0 +1,23 @@
+[gd_scene load_steps=2 format=3 uid="uid://ctevcok6s0ohh"]
+
+[ext_resource type="Script" uid="uid://bkecpnxkeyexn" path="res://src/Scripts/Scanner.gd" id="1_skrvu"]
+
+[node name="Scanner" type="Control"]
+layout_mode = 3
+anchors_preset = 0
+offset_right = 40.0
+offset_bottom = 40.0
+script = ExtResource("1_skrvu")
+
+[node name="ScanButton" type="Button" parent="."]
+layout_mode = 0
+offset_right = 8.0
+offset_bottom = 8.0
+text = "Take Photo of Barcode"
+
+[node name="StatusLabel" type="Label" parent="."]
+layout_mode = 0
+offset_top = 38.0
+offset_right = 48.0
+offset_bottom = 61.0
+text = "Ready"

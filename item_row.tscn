@@ -1,0 +1,16 @@
+[gd_scene format=3 uid="uid://b0mr3fkyex2dg"]
+
+[node name="ItemRow" type="HBoxContainer"]
+offset_right = 40.0
+offset_bottom = 40.0
+
+[node name="Thumbnail" type="TextureRect" parent="."]
+custom_minimum_size = Vector2(64, 64)
+layout_mode = 2
+
+[node name="ProductName" type="Label" parent="."]
+layout_mode = 2
+
+[node name="ViewButton" type="Button" parent="."]
+layout_mode = 2
+text = "View"

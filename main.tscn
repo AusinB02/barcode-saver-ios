@@ -1,0 +1,18 @@
+[gd_scene load_steps=3 format=3 uid="uid://7qvifm4rkcxj"]
+
+[ext_resource type="PackedScene" uid="uid://ctevcok6s0ohh" path="res://src/Scenes/scanner.tscn" id="1_2u7ne"]
+[ext_resource type="PackedScene" uid="uid://blt8075hccs1x" path="res://src/Scenes/list.tscn" id="2_2av6j"]
+
+[node name="Main" type="TabContainer"]
+offset_right = 1206.0
+offset_bottom = 2622.0
+current_tab = 0
+
+[node name="Scanner" parent="." instance=ExtResource("1_2u7ne")]
+layout_mode = 2
+metadata/_tab_index = 0
+
+[node name="List" parent="." instance=ExtResource("2_2av6j")]
+visible = false
+layout_mode = 2
+metadata/_tab_index = 1
